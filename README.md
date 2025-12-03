@@ -8,6 +8,36 @@ Lightweight helpers for working with SF Symbols and custom asset icons across Sw
 - UIKit `UIImage` convenience initializer
 - Platform support: iOS 15+, macOS 12+, tvOS 15+, watchOS 8+, visionOS 1+
 
+## Use case: Before & After
+
+**Before:** Mixing SF Symbols and custom assets requires branching code per framework.
+
+```swift
+// SwiftUI
+Image(systemName: "heart")
+Image("BrandLogo")
+
+// UIKit
+UIImage(systemName: "heart")
+UIImage(named: "BrandLogo")
+```
+
+**After:** Use `Symbol` once and keep the same API across SwiftUI and UIKit.
+
+```swift
+let favorite = Symbol.systemSymbol("heart")
+let brand = Symbol.custom("BrandLogo")
+
+// SwiftUI
+Image(symbol: favorite)
+Label("Favorites", symbol: favorite)
+Image(symbol: brand)
+
+// UIKit
+let icon = UIImage(symbol: favorite)
+let logo = UIImage(symbol: brand)
+```
+
 ## Requirements
 - Swift 6
 - Platforms listed above (conditional imports protect unavailable frameworks)
@@ -86,3 +116,33 @@ The repository includes a manual GitHub Actions workflow (`release.yml`) that:
 - Creates and pushes a tag, then publishes a GitHub Release with generated notes
 
 Trigger it from GitHub → Actions → **Release** → **Run workflow**.
+
+## Use case: Before & After
+
+**Before:** Mixing SF Symbols and custom assets requires branching code per framework.
+
+```swift
+// SwiftUI
+Image(systemName: "heart")
+Image("BrandLogo")
+
+// UIKit
+UIImage(systemName: "heart")
+UIImage(named: "BrandLogo")
+```
+
+**After:** Use `Symbol` once and keep the same API across SwiftUI and UIKit.
+
+```swift
+let favorite = Symbol.systemSymbol("heart")
+let brand = Symbol.custom("BrandLogo")
+
+// SwiftUI
+Image(symbol: favorite)
+Label("Favorites", symbol: favorite)
+Image(symbol: brand)
+
+// UIKit
+let icon = UIImage(symbol: favorite)
+let logo = UIImage(symbol: brand)
+```
