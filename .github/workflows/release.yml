@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   release:
-    runs-on: macos-latest
+    runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -28,7 +28,7 @@ jobs:
       - name: Set up Swift (use preinstalled toolchain)
         uses: swift-actions/setup-swift@v3
         with:
-          swift-version: "6.2"
+          swift-version: "6.1.2"
 
       - name: Cache SwiftPM build and dependencies
         uses: actions/cache@v4
