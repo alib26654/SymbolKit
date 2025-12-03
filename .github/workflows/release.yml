@@ -47,7 +47,8 @@ jobs:
         id: version
         run: |
           bump="${{ github.event.inputs.bump }}"
-          latest_tag=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+          # Accept past tags with optional "v" prefix, but future tags omit it.
+          latest_tag=$(git tag --list --sort=-v:refname | grep -E '^v?[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
           if [ -z "$latest_tag" ]; then
             current="0.0.0"
           else
@@ -76,8 +77,8 @@ jobs:
 
           new_version="$major.$minor.$patch"
           echo "new_version=$new_version" >> "$GITHUB_OUTPUT"
-          echo "tag=v$new_version" >> "$GITHUB_OUTPUT"
-          echo "Next version: v$new_version"
+          echo "tag=$new_version" >> "$GITHUB_OUTPUT"
+          echo "Next version: $new_version"
 
       - name: Run tests
         run: swift test
