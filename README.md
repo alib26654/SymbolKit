@@ -17,7 +17,7 @@ Add the package to your `Package.swift` dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/<your-org>/SymbolKit.git", from: "1.0.0")
+    .package(url: "https://github.com/lcandy2/SymbolKit.git", from: "1.0.0")
 ]
 ```
 
@@ -78,3 +78,10 @@ swift test
 
 SwiftUI tests are conditionally compiled; UIKit coverage runs when UIKit is available (e.g., iOS/tvOS simulators). If you add a custom image test, include a fixture asset in the test bundle.
 
+## Release workflow
+The repository includes a manual GitHub Actions workflow (`release.yml`) that:
+- Lets you pick the version bump (`major`, `minor`, or `patch`)
+- Runs `swift test` and a release build
+- Creates and pushes a tag, then publishes a GitHub Release with generated notes
+
+Trigger it from GitHub → Actions → **Release** → **Run workflow**.
