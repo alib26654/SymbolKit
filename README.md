@@ -81,6 +81,7 @@ SwiftUI tests are conditionally compiled; UIKit coverage runs when UIKit is avai
 ## Release workflow
 The repository includes a manual GitHub Actions workflow (`release.yml`) that:
 - Lets you pick the version bump (`major`, `minor`, or `patch`)
+- Installs Swift 6.2 via `swift-actions/setup-swift@v2`
 - Runs `swift test` and a release build
 - Creates and pushes a tag, then publishes a GitHub Release with generated notes
 
