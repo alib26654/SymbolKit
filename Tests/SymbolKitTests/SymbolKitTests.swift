@@ -27,6 +27,11 @@ import UIKit
     let label = Label("Favorites", symbol: .systemSymbol("heart"))
     #expect(type(of: label) == Label<Text, Image>.self)
 }
+
+@Test func createsSwiftUIButton() {
+    let button = Button("Edit", symbol: .systemSymbol("pencil")) {}
+    #expect(type(of: button) == Button<Label<Text, Image>>.self)
+}
 #endif
 
 #if canImport(UIKit)

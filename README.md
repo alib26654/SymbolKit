@@ -78,6 +78,7 @@ struct ContentView: View {
         VStack(spacing: 16) {
             Image(symbol: .systemSymbol("heart"))
             Label("Favorites", symbol: .systemSymbol("heart.fill"))
+            Button("Edit", symbol: .systemSymbol("pencil")) { /* action */ }
             Image(symbol: .custom("BrandLogo")) // requires the asset in your bundle
         }
     }

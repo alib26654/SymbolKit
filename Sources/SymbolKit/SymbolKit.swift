@@ -57,6 +57,20 @@ public extension Label where Title == Text, Icon == Image {
         }
     }
 }
+
+public extension Button where Label == SwiftUI.Label<Text, Image> {
+    /// Creates a ``Button`` that displays a text label with a ``Symbol`` icon.
+    ///
+    /// - Parameters:
+    ///   - title: The text to display.
+    ///   - symbol: A system or custom symbol identifier.
+    ///   - action: The action to perform when triggered.
+    init(_ title: String, symbol: Symbol, action: @escaping () -> Void) {
+        self.init(action: action) {
+            SwiftUI.Label(title, symbol: symbol)
+        }
+    }
+}
 #endif
 
 #if canImport(UIKit)
