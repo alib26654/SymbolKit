@@ -28,8 +28,6 @@ jobs:
       - name: Set up Swift (use preinstalled toolchain)
         uses: swift-actions/setup-swift@v3
         with:
-          # macos-15 runners already ship with 6.1.2, so this avoids the
-          # Swiftly download/install step that was adding ~1.6 GB per run.
           swift-version: "6.2"
 
       - name: Cache SwiftPM build and dependencies
